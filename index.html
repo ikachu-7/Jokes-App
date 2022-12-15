@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jokes-App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <span>&#128514;</span>
+        <p id="joke"></p>
+        <button id="btn">Get Random Joke</button>
+    </div>
+
+    <script>
+        const cnt = document.querySelector("#joke");
+        const btn = document.querySelector("#btn");
+
+        const url = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,racist,sexist,explicit&type=single";
+
+        btn.addEventListener("click",()=>{
+            cnt.classList.remove("fade");
+           fetch(url)
+           .then((response)=>{
+              return response.json();
+           }).then((item)=>{
+               cnt.textContent = `${item.joke}`;
+               cnt.classList.add("fade");
+           })
+        });
+    </script>
+</body>
+</html>
